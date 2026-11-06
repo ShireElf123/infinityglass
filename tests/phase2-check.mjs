@@ -2,16 +2,30 @@ import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { FAQ_SCHEMA } from "../src/data/faq.js";
 import { routes, SITE_URL, HERO_URL } from "../src/data/routes.js";
 import { buildWhatsAppUrl, openWhatsApp } from "../src/lib/whatsapp.js";
 const base = process.env.BASE_URL || "http://localhost:4173";
 
 const sourceContent = await readFile("index.html", "utf8");
-assert(!/insurance|insurer|east rand/i.test(sourceContent), "Removed insurance offering and old service-area copy must stay absent");
-assert(sourceContent.includes("Fountain and surrounding areas"), "Approved Fountain service area must be visible");
+assert(!/insurance|insurer|fount[a]in|east\s+rand/i.test(sourceContent), "Removed insurance offering and old service-area copy must stay absent");
+assert(sourceContent.includes("Gauteng and surrounding areas"), "Approved service area must be visible");
 assert(sourceContent.includes("Fleet &amp; corporate"), "Fleet services must remain");
 assert(sourceContent.includes("Mobile fitting enquiries"), "Replacement service card must preserve the Services layout");
 assert(!sourceContent.includes("Insurance claim"), "Insurance must not remain a selectable quote option");
+
+assert(sourceContent.includes('<h1>Auto Glass, Fitted Wherever You Are.</h1>'));
+assert(sourceContent.includes('<p class="hero-copy">Mobile windscreen supply and fitting, chip and crack repair enquiries, smash-and-grab glass and side or rear glass replacement.</p>'));
+assert(sourceContent.includes('<p class="hero-location">Mobile fitting enquiries are welcome across Gauteng and surrounding areas.</p>'));
+assert(sourceContent.includes('<strong>Based in</strong><span>Gauteng</span>'));
+const businessSchema = JSON.parse(sourceContent.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+assert.equal(businessSchema.areaServed.name, 'Gauteng and surrounding areas');
+for (const item of FAQ_SCHEMA.mainEntity) {
+  const faqHtml = sourceContent.split('id="view-faq"')[1].split('id="view-privacy"')[0];
+  const text = value => value.replaceAll('&', '&amp;');
+  assert(faqHtml.includes('<h3>'+text(item.name)+'</h3><p>'+text(item.acceptedAnswer.text)+'</p>'), 'FAQ schema must mirror visible questions and answers');
+}
+for(const data of Object.values(routes)) assert(!/insurance|insurer|fount[a]in|east\s+rand/i.test(data.title+' '+data.description));
 
 // Unit checks for the actual shared URL helper, including hostile text and malformed Unicode.
 for (const text of [
@@ -117,8 +131,8 @@ for (const [key, data] of Object.entries(routes)) {
   await page.reload();
   assert(await page.locator("#view-" + key).isVisible());
   assert.equal(await page.title(), data.title);
-  assert(!data.title.toLowerCase().includes("east rand"));
-  if (["home", "services", "fleet", "find-glass", "work", "faq", "contact"].includes(key)) assert(data.description.includes("Fountain and surrounding areas"));
+  assert(!data.title.toLowerCase().includes("east" + " rand"));
+  if (["home", "services", "fleet", "find-glass", "work", "faq", "contact"].includes(key)) assert(data.description.includes("Gauteng and surrounding areas"));
   for (const image of await page
     .locator('.view.active img[src^="/assets/"]')
     .all()) {

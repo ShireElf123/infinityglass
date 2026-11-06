@@ -1,47 +1,47 @@
-/** Existing published FAQ answers; no reviews, ratings or new business claims. */
+/** Answers mirror the visible FAQ page; availability is confirmed per enquiry. */
 export const FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
+  "mainEntity": [
     {
       "@type": "Question",
-      name: "Can you fit glass at my home or workplace?",
-      acceptedAnswer: {
+      "name": "Which areas do you cover?",
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: "Infinity accepts mobile auto-glass enquiries in Fountain and surrounding areas. Share your town or suburb so the team can confirm service availability for your location and vehicle.",
-      },
+        "text": "Mobile fitting enquiries are welcome across Gauteng and surrounding areas. Share your town or suburb so the team can confirm availability for your vehicle and location."
+      }
     },
     {
       "@type": "Question",
-      name: "Can a windscreen chip be repaired instead of replaced?",
-      acceptedAnswer: {
+      "name": "Can a chip be repaired instead of replacing the windscreen?",
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: "It depends on the damage, its position and the vehicle. Describe the damage and share a clear photo in WhatsApp so the team can advise on the next assessment step.",
-      },
+        "text": "That depends on the damage, its size and position, and the vehicle. Share a clear photo and vehicle details for an assessment."
+      }
     },
     {
       "@type": "Question",
-      name: "What information helps you quote the correct glass?",
-      acceptedAnswer: {
+      "name": "What details help identify the correct glass?",
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: "Provide the vehicle make, model, year if known, the glass panel involved and the town or suburb. Photos can be attached directly in WhatsApp after you review the enquiry.",
-      },
+        "text": "Provide the make, model, year if known, the glass panel involved, your location and any relevant sensors, camera brackets, antenna or trim details."
+      }
     },
     {
       "@type": "Question",
-      name: "Do you handle fleet or corporate enquiries?",
-      acceptedAnswer: {
+      "name": "Do you work with fleets and businesses?",
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: "Yes, fleet and corporate enquiries are welcome. Include the business name, vehicle types, fleet size, site locations and any quotation or invoicing requirements so the team can review the request.",
-      },
+        "text": "Fleet and corporate enquiries are welcome. Include the business name, fleet size, vehicle types, site locations and any quote or invoicing requirements you want the team to review."
+      }
     },
     {
       "@type": "Question",
-      name: "Does sending the website form confirm a booking or final price?",
-      acceptedAnswer: {
+      "name": "Does my enquiry confirm stock or a booking?",
+      "acceptedAnswer": {
         "@type": "Answer",
-        text: "No. The form prepares a WhatsApp message for you to review and send. Vehicle compatibility, availability, price and booking details must be confirmed directly by the business.",
-      },
-    },
-  ],
+        "text": "No. The form prepares a WhatsApp message for you to review and send. Compatibility, availability, final price and booking details must be confirmed directly."
+      }
+    }
+  ]
 };

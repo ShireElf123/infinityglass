@@ -60,7 +60,7 @@ These are image-byte savings, not measured page-load-time improvements. Actual s
 - **Performance:** no live Lighthouse/Core Web Vitals, real-device, mobile-network or third-party availability measurements were possible. Font delivery remains dependent on Google Fonts. Reduced bytes and passing local checks are not a performance score.
 - **Maintainability:** the inherited layered CSS still contains overlapping selectors and extensive `!important` rules. Consolidate section by section with visual screenshot baselines; a wholesale rewrite would risk the established presentation.
 - **SEO/progressive enhancement:** navigation uses JavaScript hash routes; these are not independent server-rendered search landing pages. No-JavaScript multi-view browsing remains limited. A route/rendering migration should be separately scoped.
-- **Legal/content:** the existing privacy/terms explicitly require business/legal review. Glass specifications, warranties, insurance availability and customer-photo permissions remain owner responsibilities.
+- **Legal/content:** the existing privacy/terms explicitly require business/legal review. Glass specifications, applicable terms and customer-photo permissions remain owner responsibilities.
 - **Infrastructure/security:** the site has no custom database or upload endpoint; enquiry strings are prepared client-side and reviewed in WhatsApp. A source audit is not a penetration test or a production HTTP-header audit. CSP/security-header changes should be verified against the actual Vercel serving setup before deployment.
 
 ## Repeat checks

@@ -2,6 +2,8 @@
 
 Static Vite website: https://infinity-auto-glass-parts.vercel.app/
 
+Business location: **Gauteng**. Mobile fitting enquiries are welcome across **Gauteng and surrounding areas**. Availability is confirmed directly for each vehicle and location.
+
 ## Development and production build
 
 ```sh
