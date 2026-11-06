@@ -1,0 +1,124 @@
+[
+  {
+    "name": "Navigate main pages and legal information",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "home page load",
+      "hash navigation",
+      "service overview",
+      "fleet and corporate page",
+      "privacy notice access",
+      "website terms access"
+    ],
+    "description": "Verifies the main site sections and legal information are reachable through the existing single-page navigation.",
+    "steps": [
+      "Open the site",
+      "Choose Services in the main navigation",
+      "Choose Fleet & Corporate",
+      "Choose Home",
+      "Open Privacy notice from the footer",
+      "Open Website terms from the footer"
+    ],
+    "expected": "Each selected view appears, navigation stays functional, and the privacy and terms content can be reached."
+  },
+  {
+    "name": "Submit a valid private and fleet quote enquiry",
+    "viewport": "desktop",
+    "covers": [
+      "quote form required fields",
+      "quote details formatting",
+      "WhatsApp handoff",
+      "privacy consent",
+      "fleet enquiry qualification",
+      "conditional fleet fields",
+      "optional fleet details handoff"
+    ],
+    "description": "Verifies private and fleet enquiries are prepared for WhatsApp with the supplied details and consent guardrail.",
+    "steps": [
+      "Open Contact",
+      "Complete name, phone, vehicle make and model, service and town or suburb, then check consent",
+      "Submit and verify WhatsApp opens with the vehicle details",
+      "Return to the form, select Fleet or corporate enquiry and enter a company name and fleet size",
+      "Submit again"
+    ],
+    "expected": "The standard enquiry opens with vehicle details; the fleet enquiry includes the supplied fleet details in the prefilled WhatsApp message."
+  },
+  {
+    "name": "Prevent incomplete quote enquiries on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "required field validation",
+      "consent validation",
+      "mobile contact workflow"
+    ],
+    "description": "Verifies the quote form blocks submission when required details or consent are missing on a mobile viewport.",
+    "steps": [
+      "Open Contact on mobile",
+      "Leave required fields empty and leave consent unchecked",
+      "Tap Review enquiry in WhatsApp"
+    ],
+    "expected": "Browser validation identifies missing required information and no WhatsApp enquiry is opened."
+  },
+  {
+    "name": "Open mobile navigation and reach fleet enquiry",
+    "viewport": "mobile",
+    "covers": [
+      "mobile menu expanded state",
+      "mobile menu close behavior",
+      "fleet navigation"
+    ],
+    "description": "Verifies mobile navigation exposes the site sections and closes after selecting a destination.",
+    "steps": [
+      "Open the site on mobile",
+      "Tap the navigation menu button",
+      "Tap Fleet & Corporate"
+    ],
+    "expected": "The fleet view appears, the mobile menu closes, and the menu button reports its collapsed state."
+  },
+  {
+    "name": "Use the visual glass guide and product catalogue on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "interactive vehicle glass hotspots",
+      "glass category links",
+      "product photography by glass type",
+      "Find Glass navigation",
+      "three-step vehicle finder",
+      "optional year handling",
+      "year validation",
+      "back and continue controls",
+      "feature notes",
+      "WhatsApp handoff",
+      "no fabricated prices or stock"
+    ],
+    "description": "Verifies the homepage vehicle glass map and product-style category cards lead into the guided finder while preserving the existing truthful quote flow.",
+    "steps": [
+      "Open the site on mobile",
+      "Tap Front windscreen on the vehicle image",
+      "Verify Find Glass opens with Front windscreen selected",
+      "Return Home and choose Rear glass from the category rail",
+      "Verify the rear-glass choice is selected in the finder",
+      "Complete make and model, leave year blank, continue through the finder and submit"
+    ],
+    "expected": "The homepage hero and supporting photo show relevant auto-glass work; the side-profile vehicle guide places arrows on the corresponding front windscreen, side windows, quarter glass and rear glass; gallery cards display relevant reference imagery with clear wording that stock photos are not verified Infinity jobs; category selections still prefill Find Glass, product cards show relevant glass images or a safe fallback, and the wizard accepts an unknown year without inventing stock, compatibility or prices."
+  },
+  {
+    "name": "Open the dedicated FAQ page and check desktop tablet layout safeguards",
+    "viewport": "desktop",
+    "covers": [
+      "FAQ route and navigation",
+      "dynamic page title and description",
+      "desktop hero responsive sizing",
+      "unverified business history not fabricated"
+    ],
+    "description": "Verifies the FAQ route is available and page metadata changes with navigation while the site remains responsive at desktop widths.",
+    "steps": [
+      "Open the site at a desktop viewport",
+      "Choose FAQs in the main navigation",
+      "Verify the FAQ view and page title are updated",
+      "Resize to a tablet-width viewport and inspect the hero text and illustration"
+    ],
+    "expected": "The FAQ page opens from navigation, the title reflects the FAQ page, and hero content remains readable without the decorative glass artwork covering the main text."
+  }
+]
