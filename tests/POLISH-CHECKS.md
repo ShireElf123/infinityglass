@@ -33,3 +33,9 @@ The model suggestions are a small curated convenience list, not a VIN lookup, fi
 `node tests/hero-check.mjs` tests at 320, 390, 768, 1024 and 1440px. It verifies the original `assets/hero-workshop.webp` full-size source, successful image decoding, natural opacity/colour (no filters, masks, blending or pseudo-element overlays), no photo transforms, solid headline text, distinct primary/secondary CTA styling, minimum 44px button heights, no horizontal overflow and hero accessibility contrast checks. Screenshots at 390/768/1440px are saved to ignored `test-results/` and were visually inspected.
 
 Hero CSS was consolidated rather than patched with new `!important` rules. White panel readability replaces the former translucent/filter overrides. Photo parallax was removed because translating an absolute cover image could expose an unfilled edge; existing panel/button/page/finder/gallery animations remain, with home-page fade moved off the photograph. The original asset was not edited. Smaller responsive derivatives are retained. Third-party font/logo hosts remain blocked during local tests; this is not a live external-availability certification.
+
+## Phase 2 production-build checks
+
+Current architecture/testing details supersede the historical inline implementation above: see [../PHASE2.md](../PHASE2.md).
+
+Run `npm run build`, start `npm run preview -- --host 0.0.0.0 --port 4173`, then `BASE_URL=http://localhost:4173 npm run test:browser`. Eight widths now include 360/430/1280px; the layout loop includes all nine views. Legacy hashes are deliberately still tested; `phase2-check.mjs` separately tests real static path entry, refresh, history, unique no-JS metadata/schema, same-origin asset loading and original hero checksum. Enquiry assertions inspect actual intercepted handoff URLs rather than obsolete leaked globals. Gallery/modal/menu keyboard and safe text/phone validation checks are expanded. No tests send WhatsApp enquiries.

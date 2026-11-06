@@ -1,5 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* STYLES */
+@import "./styles/tokens.css";
+@import "./styles/global.css";
+@import "./styles/accessibility-contrast-fix.css";
+@import "./styles/hero-presentation.css";
+@import "./styles/infinity-agency-polish.css";
+@import "./styles/infinity-glass-enhancements.css";
+@import "./styles/customer-job-and-mobile-polish.css";
+@import "./styles/audit-readable-dark-sections.css";
+@import "./styles/finder-and-gallery-features.css";

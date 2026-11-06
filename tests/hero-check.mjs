@@ -6,8 +6,8 @@ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTA
 const context=await browser.newContext();const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.route('https://**/*',async r=>{const m=r.request().url().match(/\/assets\/((?:optimized\/)?[^/?]+)$/);if(m)await r.fulfill({path:'assets/'+m[1]});else await r.abort();});
 await mkdir('test-results',{recursive:true});
-for(const width of [320,390,768,1024,1440]){
- await page.setViewportSize({width,height:1000});await page.goto('http://localhost:5173/#home');await page.locator('.hero-photo').evaluate(e=>e.decode());await page.waitForTimeout(800);await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+for(const width of [320,360,390,430,768,1024,1280,1440]){
+ await page.setViewportSize({width,height:1000});await page.goto((process.env.BASE_URL||'http://localhost:5173')+'/#home');await page.locator('.hero-photo').evaluate(e=>e.decode());await page.waitForTimeout(800);await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
  const hero=await page.locator('.hero').evaluate(el=>{
   const img=el.querySelector('img'),style=getComputedStyle(img),h=getComputedStyle(el.querySelector('h1'));
   const parents=[];for(let p=img;p;p=p.parentElement){const c=getComputedStyle(p);parents.push({opacity:c.opacity,filter:c.filter,mix:c.mixBlendMode});}

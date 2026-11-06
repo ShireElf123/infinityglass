@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Infinity Auto Glass — premium glass-craft enhancements
+   Hero photograph stays bright, clear and fully visible: no dark overlay,
+   no brightness filter, no dimming. Glass feel is built around the image.
+   All decorative motion respects prefers-reduced-motion: reduce.
+   ========================================================================== */
+
+/* Translucent glass panel with reflective edge */
+.glass-panel {
+  position: relative;
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(1.12);
+  -webkit-backdrop-filter: blur(20px) saturate(1.12);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 14px 40px rgba(10, 18, 30, 0.08);
+}
+.glass-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.3) 48%,
+    rgba(90, 130, 170, 0.16) 100%
+  );
+}
+
+/* Fine technical divider lines */
+.tech-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--silver), transparent);
+  border: none;
+  margin: 30px 0;
+}
+.accent-rule {
+  height: 3px;
+  width: 48px;
+  background: linear-gradient(90deg, #4c6e92, #a8c3d9);
+  border-radius: 2px;
+  border: none;
+  margin: 0 0 24px;
+}
+
+/* Metallic silver headline accent */
+.silver-gradient {
+  background: linear-gradient(130deg, #fff, #c9d2dc 45%, #eef2f6 70%, #9aa8b7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Editorial section numbers */
+.section-num {
+  font:
+    800 clamp(3rem, 8vw, 5rem) / 1 Sora,
+    sans-serif;
+  color: #718297;
+  letter-spacing: -0.08em;
+}
+
+/* Service cards — glass depth on light base */
+.service-card {
+  background: linear-gradient(180deg, #fff, #f7f9fc);
+  border: 1px solid var(--line);
+}
+.service-icon {
+  background: linear-gradient(145deg, #1c2b3a, #0f1722);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 10px 24px rgba(10, 18, 30, 0.12);
+}
+
+/* Dark editorial band refinement */
+.dark-band {
+  background: linear-gradient(112deg, #090d13 0%, #142030 52%, #1f334a 100%);
+}
+
+/* Section head with oversized editorial number */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-panel::after {
+    background: none !important;
+  }
+}
+@media (max-width: 760px) {
+  .accent-rule {
+    width: 36px;
+    margin-bottom: 16px;
+  }
+}

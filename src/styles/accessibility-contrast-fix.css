@@ -1,0 +1,61 @@
+/* Accessibility refinements: keep the existing layout, imagery, branding and form flows. */
+:root {
+  --muted: #465261;
+}
+p,
+.vehicle-rail-note,
+.vehicle-category-rail p,
+.trust-item span,
+.brand-marquee-head p,
+.vehicle-category-link,
+.fleet-card p,
+.service-card p,
+.step p,
+.faq-item p,
+.legal-content p,
+.legal-content li,
+.form-help,
+.consent,
+.gallery-note {
+  color: #465261 !important;
+}
+.catalog-side > p,
+.catalog-note > p {
+  color: #d5dde6 !important;
+}
+.trust-item strong,
+.step-num,
+.step h3,
+.catalog-products .section-head h2,
+.fleet-card h3,
+.service-card h3,
+.form-card h2,
+.contact-card h3,
+.legal-content h2,
+.cta-panel h2 {
+  color: #101720 !important;
+}
+.eyebrow {
+  color: #4d5968 !important;
+}
+.footer p {
+  color: #c3ccd7 !important;
+}
+.footer-links a {
+  color: #d5dde6 !important;
+}
+.footer-bottom {
+  color: #b6c1ce !important;
+}
+.finder-progress-label > span,
+#finderProgressText,
+.finder-step-heading > span {
+  color: #465261 !important;
+}
+.form-status a,
+.finder-status a {
+  color: #142b45 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}

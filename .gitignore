@@ -4,3 +4,5 @@ dist/
 assets-backup/
 test-results/
 playwright-report/
+
+public/assets/

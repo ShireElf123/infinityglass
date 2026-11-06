@@ -1,4 +1,6 @@
-# Full website audit — 6 November 2026
+# Historical website audit — 6 November 2026
+
+This records the earlier inline-site pass. For the current modular/static-route architecture and executed Phase 2 checks, see [PHASE2.md](PHASE2.md).
 
 ## Scope and outcome
 Reviewed the complete `index.html` (all nine routed views, seven CSS blocks, both JavaScript blocks, forms, metadata, image sources and accessibility), Vite/TypeScript/build configuration, dependencies and existing tests. This was an incremental maintenance pass, not a redesign. No customer reviews were added.
@@ -13,7 +15,7 @@ Reviewed the complete `index.html` (all nine routed views, seven CSS blocks, bot
 | Interactive glass guide + Fleet sedan | Same original Pexels photograph; server-side WebP/compression parameters, 1200px cap and lazy/async loading | External host blocked in this sandbox: output bytes and visual equivalence cannot be independently verified here; labels/arrows/layout untouched |
 | Find Glass windscreens photo | Original prom.ua photograph retained; tracking parameter removed; deferred loading and async decoding | External original unavailable to download/recompress; 640px-sized source URL preserved |
 | Seven catalogue tiles (six distinct photo URLs) | Lazy/async loading; explicit dimensions; bounded Unsplash request; original SVG illustrations restored on failed photo loads | Remote originals cannot be fetched/recompressed here. Other hosts' compression capabilities are not assumed |
-| Brand and trust graphics | Text-only brand strip and inline SVG icons | No external logo/icon downloads |
+| Brand and trust graphics | Original 36-image brand strip retained; inline SVG trust icons | Brand logos remain external and unverified here |
 
 ### Measured repository file sizes
 

@@ -1,0 +1,21 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f6f9;
+  --paper: #ffffff;
+  --ink: #0f1722;
+  --line: #d8dee7;
+  --night: #080c12;
+  --night2: #111a26;
+  --silver: #c9d2dc;
+  --silver2: #8fa4b7;
+  --blue: #4c6e92;
+  --blue-ink: #0c2540;
+  --green: #25d366;
+  --radius: 24px;
+  --shadow: 0 20px 60px rgba(10, 18, 30, 0.09);
+  --max: 1160px;
+  --glass: rgba(255, 255, 255, 0.68);
+  --glass-border: rgba(255, 255, 255, 0.82);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}

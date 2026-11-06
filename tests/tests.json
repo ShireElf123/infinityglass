@@ -5,7 +5,7 @@
     "viewport": "desktop",
     "covers": [
       "home page load",
-      "hash navigation",
+      "path navigation and legacy hash compatibility",
       "service overview",
       "fleet and corporate page",
       "privacy notice access",

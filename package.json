@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/render-routes.mjs",
     "preview": "vite preview",
     "lint:html": "html-validate index.html",
-    "test:browser": "node tests/polish-check.mjs && node tests/audit-check.mjs && node tests/feature-check.mjs && node tests/hero-check.mjs"
-  },
-  "dependencies": {
-    "lucide": "^0.469.0"
+    "test:browser": "node tests/polish-check.mjs && node tests/audit-check.mjs && node tests/feature-check.mjs && node tests/hero-check.mjs && node tests/phase2-check.mjs",
+    "predev": "node scripts/prepare-assets.mjs",
+    "prebuild": "node scripts/prepare-assets.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.0.0"

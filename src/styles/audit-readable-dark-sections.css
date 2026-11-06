@@ -1,0 +1,13 @@
+.page-hero p,
+.catalog-hero p,
+.dark-band p {
+  color: #d5dde6 !important;
+}
+.page-hero .eyebrow,
+.catalog-hero .eyebrow,
+.dark-band .eyebrow {
+  color: #cbd4df !important;
+}
+.dark-band .section-num {
+  color: #b9c7d6;
+}
