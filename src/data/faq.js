@@ -8,7 +8,7 @@ export const FAQ_SCHEMA = {
       name: "Can you fit glass at my home or workplace?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Infinity accepts mobile auto-glass enquiries across the East Rand. Share your town or suburb so the team can confirm service availability for your location and vehicle.",
+        text: "Infinity accepts mobile auto-glass enquiries in Fountain and surrounding areas. Share your town or suburb so the team can confirm service availability for your location and vehicle.",
       },
     },
     {
