@@ -569,6 +569,27 @@
 .page-hero .eyebrow,.catalog-hero .eyebrow,.dark-band .eyebrow{color:#cbd4df!important}
 .dark-band .section-num{color:#b9c7d6}
 </style>
+
+<style id="finder-and-gallery-features">
+.finder-live{margin:18px 30px;padding:18px 20px;border:1px solid #d5dfe9;border-radius:16px;background:#f3f6fa}
+.finder-live h3{font-size:1rem;margin:0 0 12px}.finder-live dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.finder-live dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:#526478}.finder-live dd{margin:3px 0 0;font-size:.86rem;color:#172c43;overflow-wrap:anywhere}
+.finder-live p{font-size:.76rem;margin:13px 0 0}.finder-feature-question{grid-column:1/-1}.finder-feature-question[hidden]{display:none}.model-help{font-size:.78rem;color:#465261}
+.finder-step-panel{animation:finder-panel-in .28s ease both}.product-tile.is-selected{animation:choice-confirm .25s ease both}
+@keyframes choice-confirm{from{box-shadow:0 0 0 0 #70869e55}to{box-shadow:0 0 0 4px #70869e22}}
+.job-photo-open{display:block;position:relative;width:100%;padding:0;border:0;background:#e9edf2;text-align:left;cursor:zoom-in;border-radius:0;color:#fff}
+.job-photo-open:after{content:'View photo ↗';position:absolute;right:12px;bottom:12px;background:#102237ed;border:1px solid #ffffff70;border-radius:99px;padding:7px 12px;font-size:.76rem;font-weight:700}
+.job-photo-open:focus-visible{outline:3px solid #4c6e92;outline-offset:-4px}
+.job-viewer{width:min(1050px,calc(100% - 24px));max-height:calc(100dvh - 32px);padding:0;border:1px solid #58687b;border-radius:20px;background:#101923;color:#fff;box-shadow:0 30px 90px #0008;overflow:auto}
+.job-viewer::backdrop{background:#07101be8}.job-viewer[open]{animation:viewer-in .2s ease both}
+.job-viewer-head{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;gap:20px}.job-viewer-head h2{font-size:1.1rem;margin:0}.job-viewer button{min-width:44px;min-height:44px;border:1px solid #5a6a7d;border-radius:99px;background:#203247;color:#fff;padding:9px 15px}
+.job-viewer figure{margin:0}.job-viewer img{width:100%;height:min(64dvh,700px);object-fit:contain;background:#080f17}.job-viewer figcaption{padding:16px 20px;color:#d5dde6;font-size:.9rem}.job-viewer-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 20px 18px}.job-viewer-status{font-size:.78rem;color:#c3cfdd}.job-viewer-error{padding:20px;color:#fff!important}.job-viewer-error[hidden]{display:none}
+body.photo-viewer-open{overflow:hidden}
+@keyframes viewer-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.job-photo-open img{transition:filter .2s!important}.job-photo-open:hover img{filter:brightness(1.04)}}
+@media(max-width:600px){.finder-live{margin:16px 18px;padding:16px}.finder-live dl{grid-template-columns:1fr}.job-viewer-head{padding:12px}.job-viewer-footer{padding:0 12px 14px;gap:8px}.job-viewer img{height:55dvh}.job-viewer figcaption{padding:14px}.job-viewer button{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){.finder-step-panel,.product-tile.is-selected,.job-viewer[open]{animation:none!important}.job-photo-open img{transition:none!important}}
+</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -864,6 +885,8 @@
           if(!option && choice==='Smash-and-grab glass')option=Array.from(glassTypes.options).find(function(item){return item.text==='Smash-and-grab glass';});
           if(!option)return;
           glassTypes.value=option.value;
+          glassTypes.dispatchEvent(new Event('input',{bubbles:true}));
+          glassTypes.dispatchEvent(new Event('change',{bubbles:true}));
           var selected=glassChoiceDetails[choice]||{title:choice,description:'We’ll carry this selection into your quote enquiry. Add your vehicle details to help confirm the correct glass.'};
           var summary=document.getElementById('glassChoiceSummary');
           if(summary){summary.hidden=false;summary.querySelector('strong').textContent='Selected glass: '+selected.title;summary.querySelector('span').textContent=selected.description;}
@@ -936,7 +959,7 @@
         finderForm.addEventListener('submit',function(e){
           e.preventDefault();
           if(!finderForm.checkValidity()){var invalid=finderForm.querySelector(':invalid');var panel=invalid&&invalid.closest('[data-finder-step]');if(panel)showFinderStep(Number(panel.getAttribute('data-finder-step')));if(invalid)invalid.reportValidity();return;}
-          var make=document.getElementById('finderMake').value,model=document.getElementById('finderModel').value.trim(),year=document.getElementById('finderYear').value.trim(),glass=glassTypes.value,damage=document.getElementById('finderDamage').value,features=document.getElementById('finderFeatures').value.trim(),location=document.getElementById('finderLocation').value.trim(),photo=document.getElementById('finderPhotoHint').checked;
+          var make=document.getElementById('finderMake').value,model=document.getElementById('finderModel').value.trim(),year=document.getElementById('finderYear').value.trim(),glass=glassTypes.value,damage=document.getElementById('finderDamage').value,features=window.infinityGlassFeatures?window.infinityGlassFeatures():document.getElementById('finderFeatures').value.trim(),location=document.getElementById('finderLocation').value.trim(),photo=document.getElementById('finderPhotoHint').checked;
           var yearField=document.getElementById('finderYear');
           if(year && (!/^[0-9]{4}$/.test(year)||Number(year)<1950||Number(year)>new Date().getFullYear()+1)){yearField.setCustomValidity('Enter a valid four-digit year.');yearField.reportValidity();yearField.setCustomValidity('');return;}
           var opener='please help identify and quote the correct vehicle glass.';
@@ -1123,5 +1146,51 @@
       });
     })();
   </script>
+  <script>
+    (function(){
+      'use strict';
+      // Suggestions only: this is deliberately not a compatibility or inventory database.
+      var models={Toyota:['Corolla','Corolla Cross','Hilux','Fortuner','Yaris','Avanza','Quantum','Starlet','RAV4'],Volkswagen:['Polo','Polo Vivo','Golf','Tiguan','Amarok','Caddy','Transporter'],Ford:['Ranger','Everest','Figo','Fiesta','Focus','EcoSport','Transit'],Hyundai:['i10','Grand i10','i20','i30','Tucson','Creta','H-1'],Kia:['Picanto','Rio','Sportage','Seltos','Sorento'],BMW:['1 Series','2 Series','3 Series','5 Series','X1','X3','X5'],'Mercedes-Benz':['A-Class','C-Class','E-Class','GLA','GLC','Vito','Sprinter'],Audi:['A1','A3','A4','Q2','Q3','Q5'],Nissan:['Micra','Almera','NP200','NP300','Navara','Qashqai','X-Trail','Magnite'],Isuzu:['KB','D-Max','MU-X'],Mahindra:['Pik Up','Scorpio','XUV300','XUV700'],Renault:['Kwid','Clio','Duster','Captur','Triber','Kiger'],Suzuki:['Swift','Baleno','Ertiga','Jimny','Vitara','Dzire','S-Presso'],Honda:['Brio','Jazz','Ballade','Civic','CR-V','HR-V'],Mazda:['Mazda2','Mazda3','CX-3','CX-5','BT-50']};
+      var form=document.getElementById('glassFinderForm'),make=document.getElementById('finderMake'),model=document.getElementById('finderModel'),glass=document.getElementById('finderGlass');
+      var list=document.createElement('datalist');list.id='vehicleModelSuggestions';model.setAttribute('list',list.id);model.after(list);
+      var help=document.createElement('span');help.id='modelSuggestionHelp';help.className='model-help';help.textContent='Choose a make for common model suggestions, or type any model. Suggestions do not confirm fitment.';model.after(help);model.setAttribute('aria-describedby',help.id);
+      function updateSuggestions(){list.replaceChildren();(models[make.value]||[]).forEach(function(name){var option=document.createElement('option');option.value=name;list.appendChild(option);});help.textContent=make.value&&models[make.value]?'Common '+make.value+' models suggested. Your model missing? Type it in. Fitment is confirmed by the team.':'Type your model if known. Suggestions do not confirm fitment.';}
+      make.addEventListener('change',updateSuggestions);updateSuggestions();
+      var question=document.createElement('div');question.className='field full finder-feature-question';question.hidden=true;
+      var label=document.createElement('label');label.htmlFor='finderEquipment';var equipment=document.createElement('select');equipment.id='finderEquipment';equipment.disabled=true;
+      var note=document.createElement('span');note.id='finderEquipmentHelp';note.className='form-help';note.textContent='Not sure? Leave this unanswered and attach a photo in WhatsApp. We will not assume a glass specification.';equipment.setAttribute('aria-describedby',note.id);question.append(label,equipment,note);
+      document.getElementById('finderFeatures').closest('.field').before(question);
+      function updateEquipment(){
+        var front=glass.value==='Front windscreen',rear=glass.value==='Rear windscreen / back glass';
+        var type=front?'front':rear?'rear':'';var changed=question.dataset.type!==type;question.dataset.type=type;question.hidden=!type;equipment.disabled=!type;
+        if(changed){equipment.replaceChildren();var values=front?['Not sure / not provided','No known sensors or camera','Rain sensor','Camera near rear-view mirror','Rain sensor and camera']:rear?['Not sure / not provided','Heated / demister lines','No known heated lines']:[];
+          values.forEach(function(value,i){var option=document.createElement('option');option.value=i?value:'';option.textContent=value;equipment.appendChild(option);});
+          label.textContent=front?'Sensors or camera near the windscreen? (optional)':'Rear glass heating (optional)';
+        }
+      }
+      window.infinityGlassFeatures=function(){var typed=document.getElementById('finderFeatures').value.trim();return [typed,!equipment.disabled&&equipment.value?label.textContent.replace(' (optional)','')+' '+equipment.value:''].filter(Boolean).join('; ');};
+      var live=document.createElement('section');live.className='finder-live';live.setAttribute('aria-labelledby','finderLiveTitle');
+      live.innerHTML='<h3 id="finderLiveTitle">Your enquiry so far</h3><dl><div><dt>Vehicle</dt><dd data-summary="vehicle"></dd></div><div><dt>Glass</dt><dd data-summary="glass"></dd></div><div><dt>Known features</dt><dd data-summary="features"></dd></div><div><dt>Location</dt><dd data-summary="location"></dd></div></dl><p>Fitment, stock, price and booking are confirmed directly by Infinity.</p>';
+      document.querySelector('.catalog-form-head').after(live);
+      function updateLive(){updateEquipment();var values={vehicle:[make.value,model.value.trim(),document.getElementById('finderYear').value.trim()].filter(Boolean).join(' ')||'Add your vehicle details',glass:glass.value||'Choose a glass panel',features:window.infinityGlassFeatures()||'Not provided — team to confirm',location:document.getElementById('finderLocation').value.trim()||'Add your town or suburb'};Object.keys(values).forEach(function(key){live.querySelector('[data-summary="'+key+'"]').textContent=values[key];});}
+      form.addEventListener('input',updateLive);form.addEventListener('change',updateLive);updateLive();
+      // Native dialog supplies modal focus trapping and Escape handling without a library.
+      var viewer=document.createElement('dialog');viewer.className='job-viewer';viewer.id='jobPhotoViewer';viewer.setAttribute('aria-labelledby','jobViewerTitle');
+      viewer.innerHTML='<div class="job-viewer-head"><h2 id="jobViewerTitle">Infinity customer-job photos</h2><button type="button" data-viewer-close aria-label="Close photo viewer">Close ×</button></div><figure><img alt="" decoding="async"><figcaption id="jobViewerCaption"></figcaption></figure><p class="job-viewer-error" role="status" hidden>The larger photo could not load. Please close the viewer and try again.</p><div class="job-viewer-footer"><button type="button" data-viewer-prev aria-label="Previous photo">← Previous</button><span class="job-viewer-status" role="status" aria-live="polite"></span><button type="button" data-viewer-next aria-label="Next photo">Next →</button></div>';
+      document.body.appendChild(viewer);var gallery=[],index=0,opener=null;var photo=viewer.querySelector('img'),caption=viewer.querySelector('figcaption'),status=viewer.querySelector('.job-viewer-status'),error=viewer.querySelector('.job-viewer-error');
+      function renderPhoto(){var item=gallery[index],image=item.querySelector('img');var src=image.src.replace(/-800\.webp$/, '-1200.webp');photo.alt=image.alt;photo.src=src;caption.textContent=item.querySelector('strong').textContent+' — '+item.querySelector('div > span').textContent;status.textContent='Photo '+(index+1)+' of '+gallery.length;error.hidden=true;}
+      photo.addEventListener('error',function(){error.hidden=false;});
+      function move(delta){index=(index+delta+gallery.length)%gallery.length;renderPhoto();}
+      viewer.querySelector('[data-viewer-close]').addEventListener('click',function(){viewer.close();});viewer.querySelector('[data-viewer-prev]').addEventListener('click',function(){move(-1);});viewer.querySelector('[data-viewer-next]').addEventListener('click',function(){move(1);});
+      viewer.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}if(e.key==='ArrowRight'){e.preventDefault();move(1);}});
+      viewer.addEventListener('click',function(e){if(e.target===viewer){var r=viewer.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)viewer.close();}});
+      viewer.addEventListener('close',function(){document.body.classList.remove('photo-viewer-open');photo.removeAttribute('src');if(opener&&opener.isConnected)opener.focus({preventScroll:true});});
+      window.addEventListener('hashchange',function(){if(viewer.open)viewer.close();});
+      document.querySelectorAll('.customer-job').forEach(function(card){var image=card.querySelector('img'),button=document.createElement('button');button.type='button';button.className='job-photo-open';button.setAttribute('aria-label','View larger photo: '+card.querySelector('strong').textContent);button.setAttribute('aria-haspopup','dialog');image.before(button);button.appendChild(image);
+        button.addEventListener('click',function(){gallery=Array.from(card.closest('.gallery-grid').querySelectorAll('.customer-job'));index=gallery.indexOf(card);opener=button;renderPhoto();viewer.showModal();document.body.classList.add('photo-viewer-open');viewer.querySelector('[data-viewer-close]').focus();});
+      });
+    })();
+  </script>
+
 </body>
 </html>

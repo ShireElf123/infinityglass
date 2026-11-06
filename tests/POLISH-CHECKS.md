@@ -21,3 +21,9 @@ Passed on 6 November 2026:
 External requests are intercepted during the browser test: repository images are served from the matching local files; other external services are blocked. This verifies layout and enquiry preparation, not real mobile-network speed, remote image availability, or delivery of a WhatsApp message. No real enquiries are sent.
 
 Photos were visually checked and captions describe visible subjects, without inferring repair types. Gallery images now use visually selected 4:3 editorial crops, responsive WebP sources (480/800/1200px), and correct intrinsic dimensions. Originals are preserved. Inline SVG trust icons need no external requests; gallery photos remain lazy-loaded with asynchronous decoding. Reviews were not added.
+
+## Finder and gallery feature checks
+
+`node tests/feature-check.mjs` covers curated make/model suggestions with arbitrary model entry, conditional front sensors/rear heating with stale-value reset, live summaries, inclusion of feature answers in the review/WhatsApp payload, and invalidation after edits. It also checks the photo dialog's larger responsive asset, keyboard previous/next wrapping, Escape, focus restoration, route-change close, reduced motion and automated accessibility. Protected banner/hero/guide markup is compared against the pre-feature commit.
+
+The model suggestions are a small curated convenience list, not a VIN lookup, fitment database or stock feed. No uploads, pricing, location-coverage claims or confirmed bookings have been added. The gallery loads one 1200px derivative only when opened; it has no animation dependency or third-party viewer library.

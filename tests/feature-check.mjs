@@ -1,0 +1,27 @@
+import { chromium } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined,args:['--no-sandbox'],headless:true});
+const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.route('https://**/*',async r=>{const m=r.request().url().match(/\/assets\/((?:optimized\/)?[^/?]+)$/);if(m)await r.fulfill({path:'assets/'+m[1]});else await r.abort();});
+await page.goto('http://localhost:5173/#find-glass');
+await page.locator('#finderMake').selectOption('Toyota');assert(await page.locator('#vehicleModelSuggestions option[value="Hilux"]').count());
+await page.locator('#finderModel').fill('Custom import model');await page.locator('#finderYear').fill('2021');assert((await page.locator('[data-summary="vehicle"]').textContent()).includes('Custom import model'));
+await page.locator('.btn-next').click();await page.locator('#finderGlass').selectOption('Front windscreen');assert(await page.locator('#finderEquipment').isVisible());await page.locator('#finderEquipment').selectOption('Rain sensor and camera');await page.locator('#finderFeatures').fill('Acoustic glass');assert((await page.locator('[data-summary="features"]').textContent()).includes('Rain sensor and camera'));
+await page.locator('#finderGlass').selectOption('Rear windscreen / back glass');assert.equal(await page.locator('#finderEquipment').inputValue(),'');await page.locator('#finderEquipment').selectOption('Heated / demister lines');
+await page.locator('#finderGlass').selectOption('Front left door glass');assert(await page.locator('#finderEquipment').isHidden());assert(!(await page.locator('[data-summary="features"]').textContent()).includes('demister'));
+await page.locator('#finderGlass').selectOption('Front windscreen');await page.locator('#finderEquipment').selectOption('Camera near rear-view mirror');await page.locator('.btn-next').click();await page.locator('#finderLocation').fill('Benoni');await page.locator('#glassFinderForm button[type=submit]').click();assert((await page.locator('#finderReviewSummary').textContent()).includes('Camera near rear-view mirror'));assert((await page.evaluate(()=>__infinityPreparedFinderMessage)).includes('Acoustic glass'));
+await page.locator('#finderReviewEdit').click();await page.locator('#finderModel').fill('Changed model');assert.equal(await page.evaluate(()=>__infinityPreparedFinderUrl),null);
+await page.goto('http://localhost:5173/#work');await page.locator('#view-work .job-photo-open').first().click();assert(await page.locator('#jobPhotoViewer').isVisible());await page.locator('#jobPhotoViewer img').evaluate(e=>e.decode());assert((await page.locator('#jobPhotoViewer img').getAttribute('src')).endsWith('-1200.webp'));
+assert(await page.locator('[data-viewer-close]').evaluate(e=>e===document.activeElement));await page.keyboard.press('ArrowRight');assert.equal(await page.locator('.job-viewer-status').textContent(),'Photo 2 of 4');await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator('.job-viewer-status').textContent(),'Photo 4 of 4');
+await page.waitForTimeout(500);const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(axe.violations.map(v=>v.id),[]);
+await page.keyboard.press('Escape');assert(!(await page.locator('#jobPhotoViewer').isVisible()));assert(await page.locator('#view-work .job-photo-open').first().evaluate(e=>e===document.activeElement));
+await page.locator('#view-work .job-photo-open').nth(2).click();await page.evaluate(()=>location.hash='home');await page.waitForTimeout(150);assert(!(await page.locator('#jobPhotoViewer').isVisible()));
+await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>location.hash='work');await page.waitForTimeout(150);await page.locator('#view-work .job-photo-open').first().click();assert.equal(await page.locator('#jobPhotoViewer').evaluate(e=>getComputedStyle(e).animationName),'none');
+assert.deepEqual(errors,[]);
+// The explicitly protected banner, hero and guide are unchanged by this feature work.
+const before=execFileSync('git',['show','fbbf276:index.html'],{encoding:'utf8'}),after=fs.readFileSync('index.html','utf8');
+for(const re of [/<section class="brand-marquee"[\s\S]*?<\/section>/, /<img class="hero-photo"[^>]*>/, /<div class="vehicle-map">[\s\S]*?<\/svg>/])assert.equal(after.match(re)[0],before.match(re)[0]);
+await browser.close();console.log('PASS suggestions/free text, conditional equipment/reset, live summary, WhatsApp data, review invalidation, gallery modal/navigation/focus/axe/reduced motion, protected sections unchanged');
