@@ -59,3 +59,9 @@ See [PHASE2.md](PHASE2.md) for executed checks, visual preservation, performance
 ## Content and service boundaries
 
 Vehicle suggestions are curated conveniences, not a fitment/stock database. Forms prepare WhatsApp text for the visitor to review and send; there is no upload, booking, pricing, database or submission backend. Compatibility, availability, quote and fitting details require direct business confirmation. No invented reviews, ratings, hours or street address. Owner/legal approval of the existing privacy/terms wording remains necessary.
+
+### Desktop hero and readable header lockup
+
+The desktop hero uses separate text/photo grid areas from 1101px upward. The original 1600×900 photograph is displayed at its native 16:9 aspect ratio with `contain`, no text occlusion, dimming, cropping, filters or replacement. Between 761–1100px the whole image sits above the copy; the existing mobile hero is retained. Responsive image sizes match this split.
+
+The desktop header uses a 1043×184 derivative of the supplied logo (symbol and wordmark only), with a 12px HTML tagline below it. The full original logo remains in the mobile header/footer, and both original assets remain intact. `tests/desktop-presentation-check.mjs` checks full-frame geometry, non-overlap, readable tagline and navigation at 12 tablet/desktop widths through 2560px, plus original mobile artwork. Pre-change CSS and rollback notes: `backups/desktop-hero-134fe0c/`.

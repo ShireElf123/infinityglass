@@ -21,3 +21,24 @@
 @media (max-width: 760px) {
   .header .brand-image { width: clamp(200px, 58vw, 240px); }
 }
+
+/* Desktop optical lockup: original symbol/wordmark plus genuinely readable type.
+   Mobile/footer continue using the untouched full client logo. */
+.brand-tagline { display: none; }
+@media (min-width: 761px) {
+  .header .brand { gap: 4px; padding-block: 8px; }
+  .header picture { display: block; }
+  .header .brand-image { width: 232px; aspect-ratio: 1043 / 184; }
+  .header .brand-tagline {
+    display: block;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #e4e9ef;
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+@media (min-width: 761px) and (max-width: 1120px) {
+  .header .brand-image { width: 176px; }
+}

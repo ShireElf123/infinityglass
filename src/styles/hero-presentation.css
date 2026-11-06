@@ -126,3 +126,43 @@
     gap: 9px;
   }
 }
+
+/* Desktop: separate editorial copy from the entire workshop photograph.
+   No cover crop or card occlusion: both technicians remain visible. */
+@media (min-width: 1101px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+    gap: clamp(24px, 3vw, 48px);
+    padding: 48px max(24px, calc((100vw - 1600px) / 2));
+    min-height: 640px;
+  }
+  .hero-photo {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    inset: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 18px;
+  }
+  .hero-layout {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+  .hero-content { width: 100%; padding: clamp(26px, 2.6vw, 42px); }
+  .hero h1 { font-size: clamp(2.6rem, 3.6vw, 4rem); }
+}
+/* Small laptops/tablets need the full frame too, not a cramped split. */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .hero { display: block; min-height: 0; }
+  .hero-photo { position: relative; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+  .hero-layout { width: min(100% - 48px, 900px); min-height: 0; padding: 24px 0 40px; }
+  .hero-content { width: 100%; }
+  .hero h1 { font-size: clamp(2.8rem, 5.6vw, 4rem); }
+}

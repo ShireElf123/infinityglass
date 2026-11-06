@@ -1,0 +1,23 @@
+/* Client-supplied full logo. Original artwork and tagline, no recreation or stretching. */
+.brand {
+  min-width: 0;
+  flex: 0 0 auto;
+  border-radius: 5px;
+}
+.brand-image {
+  display: block;
+  width: 208px;
+  height: auto;
+  aspect-ratio: 1043 / 248;
+  object-fit: contain;
+}
+.footer .brand-image {
+  width: min(100%, 330px);
+}
+@media (min-width: 761px) and (max-width: 1120px) {
+  .header .brand-image { width: 156px; }
+  .nav-bar { gap: 14px; }
+}
+@media (max-width: 760px) {
+  .header .brand-image { width: clamp(200px, 58vw, 240px); }
+}
