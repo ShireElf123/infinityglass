@@ -14,7 +14,7 @@ for(const width of [320,360,390,430,768,1024,1280,1440]){
   assert.equal(await logo.getAttribute('src'),'/assets/brand/infinity-logo.webp');
   assert.equal(await logo.getAttribute('width'),'1043');assert.equal(await logo.getAttribute('height'),'248');
   const dims=await logo.evaluate(e=>{const r=e.getBoundingClientRect();return{w:r.width,h:r.height,left:r.left,right:r.right,natural:e.naturalWidth}});
-  assert(dims.natural>0);assert(Math.abs(dims.w/dims.h-1043/(region==='.header'&&width>=761?184:248))<0.01);assert(dims.left>=0&&dims.right<=width);
+  assert(dims.natural>0);assert(Math.abs(dims.w/dims.h-1043/248)<0.01);assert(dims.left>=0&&dims.right<=width);
   assert(await page.locator(region+' .brand').getAttribute('aria-label'));assert.equal(await page.locator(region+' .brand').getAttribute('href'),'/');
  }
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
