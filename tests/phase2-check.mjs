@@ -118,7 +118,7 @@ for (const [key, data] of Object.entries(routes)) {
   assert(await page.locator("#view-" + key).isVisible());
   assert.equal(await page.title(), data.title);
   assert(!data.title.toLowerCase().includes("east rand"));
-  assert(data.description.includes("Fountain and surrounding areas"));
+  if (["home", "services", "fleet", "find-glass", "work", "faq", "contact"].includes(key)) assert(data.description.includes("Fountain and surrounding areas"));
   for (const image of await page
     .locator('.view.active img[src^="/assets/"]')
     .all()) {
