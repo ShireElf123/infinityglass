@@ -4,9 +4,9 @@ export const HERO_URL = `${SITE_URL}/assets/hero-workshop.webp`;
 export const routes = {
   home: {
     path: "/",
-    title: "Infinity Auto Glass & Parts | Mobile Windscreen Fitting, East Rand",
+    title: "Infinity Auto Glass & Parts | Mobile Windscreen Fitting, Fountain and surrounding areas",
     description:
-      "Mobile windscreen supply and fitting, chip repairs, side and rear glass enquiries across the East Rand, Gauteng.",
+      "Mobile windscreen supply and fitting, chip repairs, side and rear glass enquiries across the Fountain and surrounding areas.",
   },
   "find-glass": {
     path: "/find-glass/",
@@ -18,13 +18,13 @@ export const routes = {
     path: "/services/",
     title: "Auto Glass Services | Infinity Auto Glass & Parts",
     description:
-      "Windscreen supply and fitting, chip and crack assessment, side and rear glass, insurance and fleet enquiries in the East Rand.",
+      "Windscreen supply and fitting, chip and crack assessment, side and rear glass, fleet and corporate enquiries in the Fountain and surrounding areas.",
   },
   fleet: {
     path: "/fleet/",
     title: "Fleet & Corporate Auto Glass | Infinity Auto Glass & Parts",
     description:
-      "Discuss fleet vehicles, depot fitting enquiries, quotations and invoicing needs with Infinity Auto Glass & Parts in the East Rand.",
+      "Discuss fleet vehicles, depot fitting enquiries, quotations and invoicing needs with Infinity Auto Glass & Parts in the Fountain and surrounding areas.",
   },
   work: {
     path: "/work/",
@@ -36,13 +36,13 @@ export const routes = {
     path: "/faq/",
     title: "Auto Glass FAQs | Infinity Auto Glass & Parts",
     description:
-      "Answers about mobile auto-glass enquiries, identifying glass, repair assessments, pricing, insurance and fleet requests.",
+      "Answers about mobile auto-glass enquiries, identifying glass, repair assessments, pricing and fleet requests.",
   },
   contact: {
     path: "/contact/",
     title: "Contact & Quotes | Infinity Auto Glass & Parts",
     description:
-      "Call 084 526 2956 or prepare a WhatsApp quote enquiry with your vehicle details and East Rand town or suburb.",
+      "Call 084 526 2956 or prepare a WhatsApp quote enquiry with your vehicle details and Fountain and surrounding areas town or suburb.",
   },
   privacy: {
     path: "/privacy/",
