@@ -21,7 +21,7 @@ await page.keyboard.press('Escape');assert(!(await page.locator('#jobPhotoViewer
 await page.locator('#view-work .job-photo-open').nth(2).click();await page.evaluate(()=>location.hash='home');await page.waitForTimeout(150);assert(!(await page.locator('#jobPhotoViewer').isVisible()));
 await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>location.hash='work');await page.waitForTimeout(150);await page.locator('#view-work .job-photo-open').first().click();assert.equal(await page.locator('#jobPhotoViewer').evaluate(e=>getComputedStyle(e).animationName),'none');
 assert.deepEqual(errors,[]);
-// The explicitly protected banner, hero and guide are unchanged by this feature work.
+// The explicitly protected banner and guide remain unchanged; hero checks live in hero-check.mjs.
 const before=execFileSync('git',['show','fbbf276:index.html'],{encoding:'utf8'}),after=fs.readFileSync('index.html','utf8');
-for(const re of [/<section class="brand-marquee"[\s\S]*?<\/section>/, /<img class="hero-photo"[^>]*>/, /<div class="vehicle-map">[\s\S]*?<\/svg>/])assert.equal(after.match(re)[0],before.match(re)[0]);
+for(const re of [/<section class="brand-marquee"[\s\S]*?<\/section>/, /<div class="vehicle-map">[\s\S]*?<\/svg>/])assert.equal(after.match(re)[0],before.match(re)[0]);
 await browser.close();console.log('PASS suggestions/free text, conditional equipment/reset, live summary, WhatsApp data, review invalidation, gallery modal/navigation/focus/axe/reduced motion, protected sections unchanged');
