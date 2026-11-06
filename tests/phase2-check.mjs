@@ -5,6 +5,14 @@ import { createHash } from "node:crypto";
 import { routes, SITE_URL, HERO_URL } from "../src/data/routes.js";
 import { buildWhatsAppUrl, openWhatsApp } from "../src/lib/whatsapp.js";
 const base = process.env.BASE_URL || "http://localhost:4173";
+
+const sourceContent = await readFile("index.html", "utf8");
+assert(!/insurance|insurer|east rand/i.test(sourceContent), "Removed insurance offering and old service-area copy must stay absent");
+assert(sourceContent.includes("Fountain and surrounding areas"), "Approved Fountain service area must be visible");
+assert(sourceContent.includes("Fleet &amp; corporate"), "Fleet services must remain");
+assert(sourceContent.includes("Mobile fitting enquiries"), "Replacement service card must preserve the Services layout");
+assert(!sourceContent.includes("Insurance claim"), "Insurance must not remain a selectable quote option");
+
 // Unit checks for the actual shared URL helper, including hostile text and malformed Unicode.
 for (const text of [
   "Hello & quote? #glass + <script>alert(1)</script>\n\nBenoni",
@@ -109,6 +117,8 @@ for (const [key, data] of Object.entries(routes)) {
   await page.reload();
   assert(await page.locator("#view-" + key).isVisible());
   assert.equal(await page.title(), data.title);
+  assert(!data.title.toLowerCase().includes("east rand"));
+  assert(data.description.includes("Fountain and surrounding areas"));
   for (const image of await page
     .locator('.view.active img[src^="/assets/"]')
     .all()) {
