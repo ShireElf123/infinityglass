@@ -8,7 +8,7 @@
     "build": "vite build && node scripts/render-routes.mjs",
     "preview": "vite preview",
     "lint:html": "html-validate index.html",
-    "test:browser": "node tests/polish-check.mjs && node tests/audit-check.mjs && node tests/feature-check.mjs && node tests/hero-check.mjs && node tests/phase2-check.mjs",
+    "test:browser": "node tests/polish-check.mjs && node tests/audit-check.mjs && node tests/feature-check.mjs && node tests/hero-check.mjs && node tests/phase2-check.mjs && node tests/client-content-check.mjs",
     "predev": "node scripts/prepare-assets.mjs",
     "prebuild": "node scripts/prepare-assets.mjs",
     "typecheck": "tsc --noEmit"
