@@ -4,7 +4,7 @@ const browser=await pw.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PA
 const page=await browser.newPage();
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 // Sandbox blocks third-party image/font hosts. Serve the exact committed photos locally for layout tests.
-await page.route('https://**/*',async r=>{const u=r.request().url();const m=u.match(/\/assets\/([^/?]+)$/);if(m)await r.fulfill({path:'assets/'+m[1]});else await r.abort();});
+await page.route('https://**/*',async r=>{const u=r.request().url();const m=u.match(/\/assets\/((?:optimized\/)?[^/?]+)$/);if(m)await r.fulfill({path:'assets/'+m[1]});else await r.abort();});
 for(const width of [320,390,768,1024,1440]){
  await page.setViewportSize({width,height:900});await page.goto('http://localhost:5173');
  for(const route of ['home','work','find-glass','services','fleet','contact','faq']){

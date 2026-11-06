@@ -20,4 +20,4 @@ Passed on 6 November 2026:
 
 External requests are intercepted during the browser test: repository images are served from the matching local files; other external services are blocked. This verifies layout and enquiry preparation, not real mobile-network speed, remote image availability, or delivery of a WhatsApp message. No real enquiries are sent.
 
-Photos were visually checked and captions describe visible subjects, without inferring repair types. Gallery images use their actual dimensions and are displayed without cropping. Inline SVG trust icons need no external requests; gallery photos remain lazy-loaded with asynchronous decoding. Reviews were not added.
+Photos were visually checked and captions describe visible subjects, without inferring repair types. Gallery images now use visually selected 4:3 editorial crops, responsive WebP sources (480/800/1200px), and correct intrinsic dimensions. Originals are preserved. Inline SVG trust icons need no external requests; gallery photos remain lazy-loaded with asynchronous decoding. Reviews were not added.
