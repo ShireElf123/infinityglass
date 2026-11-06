@@ -1,0 +1,15 @@
+{
+  "routes": [
+    {
+      "src": "/hero-workshop\\.webp$",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "dest": "/hero-workshop.webp"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
