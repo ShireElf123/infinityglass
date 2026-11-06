@@ -23,3 +23,9 @@ for name in [*focal, 'service-split']:
         path = out / f'{name}-{width}.webp'
         resized.save(path, 'WEBP', quality=80, method=6)
         print(path, resized.size, path.stat().st_size)
+
+# Preserve the original hero composition and brightness; strip metadata on save.
+image = ImageOps.exif_transpose(Image.open('assets/hero-workshop.webp')).convert('RGB')
+for width in (480, 960, 1600):
+    image.resize((width, round(image.height*width/image.width)), Image.Resampling.LANCZOS).save(
+        out / f'hero-workshop-{width}.webp', 'WEBP', quality=80, method=6)
