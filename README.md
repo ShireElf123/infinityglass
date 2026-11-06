@@ -38,6 +38,10 @@ The header/footer use the supplied full infinity wordmark and tagline, not recre
 
 No application-framework migration or new runtime dependency. The unused `lucide` dependency was removed; approved icons remain inline SVG. Legacy extracted modules stay JavaScript; TypeScript checks the entry and opted-in JSDoc helper, **not every legacy DOM expression**.
 
+## Glass guide rollback
+
+The guide precision polish has a pre-change snapshot and safe revert instructions in `backups/glass-guide-38a8e58/README.md`. The original photo and SVG pane anchors remain untouched. `tests/guide-check.mjs` verifies all diagram/category selections, consistent names, non-overlapping labels, keyboard activation and door-position options. Its screenshots intentionally block unavailable external media and are not evidence of arrow-to-pane accuracy over the real photo.
+
 ## Automated regression checks
 
 Against the built site running on port 4173:

@@ -1,0 +1,5 @@
+/* Longer, consistent names need a little separation on narrow screens.
+   Preserve the photograph, SVG pane anchors and established layout. */
+@media (max-width: 600px) {
+  .vehicle-map .hotspot-quarter { top: 43%; }
+}

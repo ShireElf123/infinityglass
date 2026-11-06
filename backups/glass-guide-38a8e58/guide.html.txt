@@ -1,0 +1,23 @@
+      <section class="vehicle-glass-showcase" aria-labelledby="vehicleGlassTitle"><div class="wrap">
+        <div class="section-head"><span class="section-num" aria-hidden="true">01</span><span class="eyebrow">See the glass on your vehicle</span><h2 id="vehicleGlassTitle">Point to the window. We’ll help identify the part.</h2><p>Choose a glass area on the vehicle or use the category list. The picture is an illustration for browsing—not a guarantee of fitment for your exact model.</p></div>
+        <div class="vehicle-showcase-shell">
+          <div class="vehicle-map">
+            <img src="https://images.pexels.com/photos/9452235/pexels-photo-9452235.jpeg?auto=compress&cs=tinysrgb&w=1200&q=75&fm=webp" alt="Illustrative silver sedan in side profile with front windscreen, side windows and rear glass visible" loading="lazy" decoding="async" width="1500" height="900">
+            <span class="vehicle-map-kicker">Interactive glass guide</span>
+            <svg class="vehicle-map-arrows" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="glassArrowHead" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#fff"/></marker></defs><path d="M325 276 L240 155 L175 155" marker-end="url(#glassArrowHead)"/><circle cx="325" cy="276" r="5"/><path d="M495 292 L455 410 L390 410" marker-end="url(#glassArrowHead)"/><circle cx="495" cy="292" r="5"/><path d="M745 260 L820 155 L890 155" marker-end="url(#glassArrowHead)"/><circle cx="745" cy="260" r="5"/><path d="M660 287 L710 365 L790 365" marker-end="url(#glassArrowHead)"/><circle cx="660" cy="287" r="5"/></svg>
+            <a class="vehicle-hotspot hotspot-windscreen" href="/find-glass/" data-glass-choice="Front windscreen"><span>Front windscreen</span><span class="hotspot-arrow" aria-hidden="true">↗</span></a>
+            <a class="vehicle-hotspot hotspot-side" href="/find-glass/" data-glass-choice="Side / door glass — position to confirm"><span>Side window</span><span class="hotspot-arrow" aria-hidden="true">↗</span></a>
+            <a class="vehicle-hotspot hotspot-rear" href="/find-glass/" data-glass-choice="Rear windscreen / back glass"><span>Rear glass</span><span class="hotspot-arrow" aria-hidden="true">↗</span></a>
+            <a class="vehicle-hotspot hotspot-quarter" href="/find-glass/" data-glass-choice="Quarter / vent glass"><span>Quarter glass</span><span class="hotspot-arrow" aria-hidden="true">↗</span></a>
+            <div class="vehicle-map-caption"><strong>Choose the area that needs attention</strong><span>We’ll carry your selection into the vehicle glass finder.</span></div>          </div>
+          <aside class="vehicle-category-rail" aria-label="Glass categories"><h3>Browse glass categories</h3><p>Not sure where the part sits? Start here.</p>
+            <a class="vehicle-category-link" href="/find-glass/" data-glass-choice="Front windscreen">Front windscreen <span>↗</span></a>
+            <a class="vehicle-category-link" href="/find-glass/" data-glass-choice="Rear windscreen / back glass">Rear glass <span>↗</span></a>
+            <a class="vehicle-category-link" href="/find-glass/" data-glass-choice="Side / door glass — position to confirm">Door / side glass <span>↗</span></a>
+            <a class="vehicle-category-link" href="/find-glass/" data-glass-choice="Quarter / vent glass">Quarter / vent glass <span>↗</span></a>
+            <a class="vehicle-category-link" href="/find-glass/" data-glass-choice="Chip or crack assessment">Chip / crack <span>↗</span></a>
+            <a class="vehicle-category-link" href="/find-glass/" data-glass-choice="Not sure — help me identify it">Help identify it <span>↗</span></a>
+            <div class="vehicle-rail-note">Exact compatibility, availability and pricing are confirmed by Infinity before booking.</div>
+          </aside>
+        </div>
+      </div></section>
