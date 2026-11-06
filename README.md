@@ -21,6 +21,10 @@ Vite bundles the CSS and small feature modules, then `scripts/render-routes.mjs`
 
 Public paths: `/`, `/find-glass/`, `/services/`, `/fleet/`, `/work/`, `/faq/`, `/contact/`, `/privacy/`, `/terms/`. Old `#route` links remain compatible and become canonical paths. Regular links also work without JavaScript. Without JavaScript, enquiry forms are hidden with direct phone/WhatsApp alternatives (no accidental GET submission of private fields).
 
+## Client logo
+
+The header/footer use the supplied full infinity wordmark and tagline, not recreated text. `assets/brand/infinity-logo-original.jpg` preserves the upload unchanged. `infinity-logo.webp` is a cropped, background-cleaned web derivative (1043×248); CSS preserves its aspect ratio and reserves its space. Header sizes adapt to mobile/tablet, with a larger full logo in the footer. The asset-preparation hook serves it from the existing same-origin static output. `tests/brand-check.mjs` checks asset decoding, accessible home links, sizing and navigation overlap at eight widths.
+
 ## Architecture
 
 - `index.html`: existing semantic views, approved artwork and inert authored UI templates; no executable inline application script or large inline stylesheet.

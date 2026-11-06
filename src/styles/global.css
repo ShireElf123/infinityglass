@@ -166,25 +166,6 @@ p {
   min-width: -moz-max-content;
   min-width: max-content;
 }
-.brand-main {
-  font:
-    800 1.48rem/1 Sora,
-    sans-serif;
-  font-style: italic;
-  letter-spacing: 0.055em;
-  background: linear-gradient(180deg, #fff, #9aa6b6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.brand-sub {
-  font:
-    600 0.49rem/1.5 Inter,
-    sans-serif;
-  letter-spacing: 0.2em;
-  margin-top: 7px;
-  color: #c4ccd6;
-}
 .nav-links {
   display: flex;
   align-items: center;
@@ -1061,9 +1042,6 @@ p {
   .footer-grid > div:first-child,
   .footer-grid > div:last-child {
     grid-column: auto;
-  }
-  .brand-main {
-    font-size: 1.3rem;
   }
 }
 .catalog-hero {
