@@ -4,15 +4,15 @@ export const HERO_URL = `${SITE_URL}/assets/hero-workshop.webp`;
 export const routes = {
   home: {
     path: "/",
-    title: "Infinity Auto Glass & Parts | Mobile Windscreen Fitting, Fountain and surrounding areas",
+    title: "Infinity Auto Glass & Parts | Fountain & Surrounding Areas",
     description:
-      "Mobile windscreen supply and fitting, chip repairs, side and rear glass enquiries across the Fountain and surrounding areas.",
+      "Mobile windscreen supply and fitting, chip repairs, side and rear glass enquiries in Fountain and surrounding areas.",
   },
   "find-glass": {
     path: "/find-glass/",
     title: "Find Vehicle Glass | Infinity Auto Glass & Parts",
     description:
-      "Identify your vehicle glass, share sensors and features, and prepare a WhatsApp quote enquiry for Infinity Auto Glass & Parts.",
+      "Identify your vehicle glass, share sensors and features, and prepare a WhatsApp quote enquiry for Infinity Auto Glass & Parts in Fountain and surrounding areas.",
   },
   services: {
     path: "/services/",
@@ -30,31 +30,31 @@ export const routes = {
     path: "/work/",
     title: "Our Work | Infinity Auto Glass & Parts",
     description:
-      "See photographs supplied by Infinity Auto Glass & Parts: on-site equipment, glass handling, the service vehicle and customer handover.",
+      "See photographs supplied by Infinity Auto Glass & Parts: on-site equipment, glass handling, the service vehicle and customer handover in Fountain and surrounding areas.",
   },
   faq: {
     path: "/faq/",
     title: "Auto Glass FAQs | Infinity Auto Glass & Parts",
     description:
-      "Answers about mobile auto-glass enquiries, identifying glass, repair assessments, pricing and fleet requests.",
+      "Answers about mobile auto-glass enquiries, identifying glass, repair assessments, pricing and fleet requests in Fountain and surrounding areas.",
   },
   contact: {
     path: "/contact/",
     title: "Contact & Quotes | Infinity Auto Glass & Parts",
     description:
-      "Call 084 526 2956 or prepare a WhatsApp quote enquiry with your vehicle details and Fountain and surrounding areas town or suburb.",
+      "Call 084 526 2956 or prepare a WhatsApp quote enquiry with your vehicle details and your location in Fountain or a surrounding area.",
   },
   privacy: {
     path: "/privacy/",
     title: "Privacy Notice | Infinity Auto Glass & Parts",
     description:
-      "How the Infinity Auto Glass & Parts website handles enquiry details and third-party WhatsApp links.",
+      "How the Infinity Auto Glass & Parts website handles enquiry details and third-party WhatsApp links for service enquiries in Fountain and surrounding areas.",
   },
   terms: {
     path: "/terms/",
     title: "Website Terms | Infinity Auto Glass & Parts",
     description:
-      "Website-use information and terms for vehicle-glass quotations and service enquiries.",
+      "Website-use information and terms for vehicle-glass quotations and service enquiries in Fountain and surrounding areas.",
   },
 };
 export function routeFromPath(path) {
